@@ -1,10 +1,10 @@
 class Admin::GenresController < ApplicationController
+  before_action :authenticate_admin!
 
   def create
     @genre = Genre.new(genre_params)
     @genre.save
-      flash[:notice] = "ジャンル投稿が完了しました"
-      redirect_to admin_genres_path
+    redirect_to admin_genres_path
   end
 
   def index
