@@ -9,7 +9,7 @@ class Public::AddressesController < ApplicationController
 
   def index
     @address = Address.new
-    @addresses = Addresses
+    @addresses = Addresses.page(params[:page]).reverse_order
   end
 
   def edit

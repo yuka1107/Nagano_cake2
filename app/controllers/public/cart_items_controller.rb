@@ -9,7 +9,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def index
-    @cart_item = CartItem.all
+    @cart_item = CartItem.page(params[:page]).reverse_order
   end
 
   def update
