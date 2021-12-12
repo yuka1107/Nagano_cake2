@@ -9,7 +9,7 @@ class Admin::GenresController < ApplicationController
 
   def index
     @genre = Genre.new
-    @genres = Genre.page(params[:page]).reverse_order
+    @genres = Genre.all
   end
 
   def edit

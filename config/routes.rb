@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
 
   devise_for :admins, controllers: {
-  sessions:      'admins/sessions',
-  passwords:     'admins/passwords',
-  registrations: 'admins/registrations'
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords',
+    registrations: 'admins/registrations',
   }
 
   devise_for :customers, controllers: {
-    sessions:      'customers/sessions',
-    passwords:     'customers/passwords',
+    sessions: 'customers/sessions',
+    passwords: 'customers/passwords',
     registrations: 'customers/registrations'
   }
 
@@ -26,9 +26,16 @@ Rails.application.routes.draw do
     get "about" => 'homes#about'
     resources :items, only: [:index, :show]
     resources :customers, only: [:edit, :update]
-    resources :cart_items, only: [:create, :index, :update]
+    get 'customers/unsubscribe' => 'customers#unsubscribe'
+    patch 'customers/withdraw'
+    resources :cart_items
+    delete 'cart_items' => 'cart_items#destroy_all'
     resources :orders, only: [:new, :index, :show]
+    post 'orders/confirm' => 'orders#confirm'
+    get 'orders/thanks' => 'orders#thanks'
     resources :addresses, except: [:new, :show]
   end
+  #publicのルートパス
+  root to: 'public/homes#top'
 
 end

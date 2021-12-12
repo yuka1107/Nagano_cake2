@@ -1,4 +1,5 @@
-<h2>商品一覧</h2>
+<h4>商品一覧</h4>
+<i class="bi bi-plus-circle"></i>
 
 <table>
   <thead>
@@ -14,23 +15,14 @@
   <tbody>
     <% @items.each do |item| %>
     <tr>
-     <td><%= item.id %></td>
-     <td>
-      <%= link_to admin_item_path(item.id) do %>
-       <%= item.name %>
-      <% end %>
-     </td>
-     <td><%= item.price %></td>
-     <td><%= item.genre.name %></td>
-     <td>
-      <% if item.is_active == true %>
-       <p>販売中</p>
-      <% else %>
-       <p>販売停止中</p>
-      <% end %>
-     </td>
+      <td><%= item.id %></td>
+      <td><%= link_to item.name, admin_item_path(item.id) %></td>
+      <td><%= item.price.to_s(:delimited) %></td>
+      <td><%= item.genre.name %></td>
+      <td><%= item.is_active == true ? "販売中" : "販売中止" %></td>
     </tr>
    <% end %>
   </tbody>
-  
 </table>
+
+<div><%= paginate @items %></div>

@@ -7,7 +7,7 @@
     <th>メールアドレス</th>
     <th>会員ステータス</th>
   </thead>
-  <% @customer.each do |customer| %>
+  <% @customers.each do |customer| %>
   <tbody>
     <tr>
       <td><%= customer.id %></td>
@@ -18,3 +18,7 @@
   </tbody>
   <% end %>
 </table>
+
+<div>
+  <%= paginate @customers %>
+</div>

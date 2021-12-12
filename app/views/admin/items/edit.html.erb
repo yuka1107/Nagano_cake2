@@ -1,30 +1,41 @@
-<h2>商品編集</h2>
+<h4>商品編集</h4>
 
-<!-- form_with部分 -->
-<%= form_with model:@item, url:admin_item_path(@item), local:true do |f| %>
-  <h4>商品画像</h4>
-  <%= f.label :image_id, '商品画像' %>
-  <%= f.attachment_field :image_id %>
-
-  <h4>商品名</h4>
-  <%= f.label :name, '商品名' %>
-  <%= f.text_field :name %>
-
-  <h4>商品説明</h4>
-  <%= f.label :introduction, '商品説明' %>
-　<%= f.text_area :introduction %>
-
-  <h4>ジャンル</h4>
-  <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "選択してください？", class: 'form-control' %>
-
-  <h4>税抜価格</h4>
-  <%= f.label :price, '税抜価格' %>
-  <%= f.text_field :price %>
-
-　<h4>販売ステータス</h4>
-  <%= f.radio_button :is_active, :true %>
-  <%= f.label :is_active, "販売中", {value: :true, style: "display: inline-block;"} %>
-  <%= f.radio_button :is_active, :false %>
-  <%= f.label :is_active, "販売停止中", {value: :false, style: "display: inline-block;"} %>
-  <%= f.submit '保存', class: "btn btn-success" %>
-<% end %>
+<div>
+  <!-- form_with部分 -->
+  <%= form_with model:@item, url:admin_item_path(@item), local:true do |f| %>
+  <table>
+    <tbody>
+      <tr>
+        <td>商品画像</td>
+        <td><%= f.attachment_field :image_id %></td>
+      </tr>
+      <tr>
+        <td>商品名</td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <td>商品説明</td>
+　      <td><%= f.text_area :introduction %></td>
+      </tr>
+      <tr>
+        <td>ジャンル</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>税抜価格</td>
+        <td><%= f.text_field :price %></td>
+      </tr>
+      <tr>
+        <td>販売ステータス</td>
+        <td>
+          <%= f.radio_button :is_active, :true %>
+          <%= f.label :is_active, "販売中", {value: :true, style: "display: inline-block;"} %>
+          <%= f.radio_button :is_active, :false %>
+          <%= f.label :is_active, "販売停止中", {value: :false, style: "display: inline-block;"} %>
+          <%= f.submit '保存', class: "btn btn-success" %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <% end %>
+</div>
