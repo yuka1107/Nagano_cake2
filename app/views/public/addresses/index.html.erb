@@ -1,4 +1,4 @@
-<h2>配送先登録・一覧</h2>
+<h2>配送先登録/一覧</h2>
 
 <div>
   <%= form_with model: @address, local:true do |f| %>
@@ -14,12 +14,12 @@
     <tr>
       <td>宛名</td>
       <td><%= f.text_field :name %></td>
-      <%= f.submit '登録', class: "btn btn-success" %>
+      <td><%= f.submit '新規登録', class: "btn btn-success" %></td>
     </tr>
   </table>
   <% end %>
 
-  <table>
+  <table class="table-bordered">
     <tr>
       <td>郵便番号</td>
       <td>住所</td>

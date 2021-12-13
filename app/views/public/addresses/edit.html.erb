@@ -1,4 +1,4 @@
-<h2>配送先編集</h2>
+<h4>配送先編集</h4>
 
 <div>
   <% form_with model: @address, local:true do |f| %>
@@ -13,10 +13,10 @@
         <td><%= f.text_field :address %></td>
       </tr>
       <tr>
-      <td>宛名</td>
-      <td><%= f.text_field :name %></td>
-      <%= f.submit '変更内容を保存', class: "btn btn-success" %>
-    </tr>
+        <td>宛名</td>
+        <td><%= f.text_field :name %></td>
+        <td><%= f.submit '変更内容を保存', class: "btn btn-success" %></td>
+      </tr>
     </tbody>
   </table>
   <% end %>
