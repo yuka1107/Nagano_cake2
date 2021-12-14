@@ -11,10 +11,8 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-    if @customer.update(customer_params)
-      redirect_to public_customers_path
-    else
-      render :edit
+    @customer.update(customer_params)
+    redirect_to customers_path
   end
 
   def unsubscribe

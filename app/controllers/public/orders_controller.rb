@@ -35,12 +35,12 @@ class Public::OrdersController < ApplicationController
       order_detail.amount = cart_item.amount
       order_detail.item_id = cart_item.item_id
       order_detail.order_id = @order.id
-      order_detail.making = 0
+      order_detail.making_status= 0
       order_detail.price = cart_item.item.price
       order_detail.save
      end
     CartItem.destroy_all
-    redirect_to complete_orders_path
+    redirect_to thanks_orders_path
   end
 
   def index

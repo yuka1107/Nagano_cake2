@@ -27,19 +27,19 @@
       <td>電話番号</td>
       <td><%= @customer.telephone_number %></td>
     </tr>
-     <tr>
+    <tr>
       <td>メールアドレス</td>
       <td><%= @customer.email %></td>
     </tr>
   </tbody>
 </table>
 
-<div class="d-flex">
+<div class="d-flex my-3">
   <h4 class="font-weight-bold">配送先</h4>
   <%= link_to "一覧を見る", addresses_path, class: "btn btn-primary" %>
 </div>
 
 <div class="d-flex my-3">
-  <h4 class="mx-4 font-weight-bold">注文履歴</h4>
+  <h4 class="font-weight-bold">注文履歴</h4>
   <%= link_to "一覧を見る", orders_path, class: "btn btn-primary" %>
 </div>

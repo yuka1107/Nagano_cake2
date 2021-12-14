@@ -23,22 +23,22 @@
     </tbody>
   </table>
 
-<table class="table-bordered mx-5">
-  <tbody>
-    <tr>
-      <td>送料</td>
-      <td><%= @order.shipping_cost %></td>
-    </tr>
-    <tr>
-      <td>商品合計</td>
-      <td><%= total.to_s(:delimited) %></td>
-    </tr>
-    <tr>
-      <td>請求額</td>
-      <td><% total_payment = @order.shipping_cost + total %><%= total_payment.to_s(:delimited) %></td>
-    </tr>
-  </tbody>
-</table>
+　<table class="table-bordered mx-5">
+  　<tbody>
+    　<tr>
+     　  <td>送料</td>
+      　<td><%= @order.shipping_cost %></td>
+    　</tr>
+  　   <tr>
+        <td>商品合計</td>
+        <td><%= total.to_s(:delimited) %></td>
+      </tr>
+      <tr>
+        <td>請求額</td>
+        <td><% total_payment = @order.shipping_cost + total %><%= total_payment.to_s(:delimited) %></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <div class="d-flex">

@@ -1,6 +1,7 @@
 <h2><%= @customer.name %>さんの会員情報編集</h2>
 <div>
   <%= form_with model: @customer, url: admin_customer_path(@customer.id), local:true do |f| %>
+  
     <table>
       <tbody>
         <tr>
@@ -50,5 +51,6 @@
       　</tr>
       </tbody>
     </table>
+    
   <% end %>
 </div>
