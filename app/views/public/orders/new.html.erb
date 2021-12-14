@@ -11,7 +11,35 @@
 
   <h4 class="mx-3 font-weight-bold">お届け先</h4>
   <div class="mx-4">
+      <p>
+        <%= f.radio_button :address_select, "a" %>
+        <%= f.label :address_id, "ご自身の住所" %><br>
+        <%= current_customer.full_address %>
+      </p>
+      <p>
+        <%= f.radio_button :address_select, "b" %>
+        <%= f.label :address_id, "登録済住所から選択" %><br>
+        <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :full_address) %>
+      </p>
+      <p>
+        <%= f.radio_button :address_select, "c" %>
+        <%= f.label :address_id, "新しいお届け先" %>
 
+      <table>
+        <tr>
+          <td>郵便番号(ハイフンなし)</td>
+          <td><%= f.text_field :postal_code %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= f.text_field :address %></td>
+        </tr>
+        <tr>
+          <td>宛名</td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+      </table>
+    </p>
   </div>
 
 <div class="text-center">

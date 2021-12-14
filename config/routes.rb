@@ -21,21 +21,29 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
   end
 
-  namespace :public do
+  scope module: :public do
     root to: 'homes#top'
-    get "about" => 'homes#about'
-    resources :items, only: [:index, :show]
-    resources :customers, only: [:show, :edit, :update]
-    get 'customers/unsubscribe' => 'customers#unsubscribe'
-    patch 'customers/withdraw'
-    resources :cart_items
-    delete 'cart_items' => 'cart_items#destroy_all'
-    resources :orders, only: [:new, :index, :show]
-    post 'orders/confirm' => 'orders#confirm'
-    get 'orders/thanks' => 'orders#thanks'
-    resources :addresses, except: [:new, :show]
+    get "about" => "homes#about"
+    resources :items, only: [:show, :index]
+    resources :addresses, except: [:show, :new]
+    resource :customers, only: [:update, :edit] do
+      collection do
+      get 'unsubscribe'
+      patch 'withdraw'
+      end
+    end
+    get "customers/my_page" => "customers#show"
+    resources :cart_items, only: [:index, :update, :destroy, :create] do
+      collection do
+      delete 'destroy_all'
+      end
+    end
+    post 'orders/comfirm' => "orders#comfirm"
+    resources :orders, only: [:index, :new, :show, :create] do
+      collection do
+      get 'complete'
+      end
+    end
   end
-  #publicのルートパス
-  root to: 'public/homes#top'
 
 end

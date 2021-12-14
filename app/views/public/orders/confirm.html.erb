@@ -1,0 +1,59 @@
+<h4 class="mx-5">注文情報確認</h4>
+
+<div class="d-flex justify-content-center" style="width: 80%;">
+
+  <table class="table-bordered">
+    <thead>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+    </thead>
+    <tbody>
+      <% total = 0 %>
+      <% @cart_items.each do |cart_item| %>
+      <tr>
+        <td><%= attachment_image_tag cart_item.item, :image, :fill, 40, 40 %><%= cart_item.item.name %></td>
+        <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
+        <% total += cart_item.item.with_tax_price * cart_item.amount %>
+        <td><%= cart_item.amount %></td>
+        <td><%= cart_item.subtotal.to_s(:delimited) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<table class="table-bordered mx-5">
+  <tbody>
+    <tr>
+      <td>送料</td>
+      <td><%= @order.shipping_cost %></td>
+    </tr>
+    <tr>
+      <td>商品合計</td>
+      <td><%= total.to_s(:delimited) %></td>
+    </tr>
+    <tr>
+      <td>請求額</td>
+      <td><% total_payment = @order.shipping_cost + total %><%= total_payment.to_s(:delimited) %></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="d-flex">
+  <h4 class="font-weight-bold">支払方法</h4>
+  <%= @order.payment_method_i18n %>
+</div>
+
+<div class="d-flex">
+  <h4 class="font-weight-bold">お届け先</h4>
+  <div>
+    〒<%= @order.postal_code %><span> </span><%= @order.address %><br>
+    <%= @order.name %>
+  </div>
+</div>
+
+<div class="text-center">
+  <%= f.submit '注文を確定する', class="btn btn-success" %>
+</div>

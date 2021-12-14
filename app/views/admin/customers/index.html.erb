@@ -1,12 +1,14 @@
-<h2>会員一覧</h2>
+<h4>会員一覧</h4>
 
 <table>
+
   <thead>
     <th>会員ID</th>
     <th>氏名</th>
     <th>メールアドレス</th>
     <th>会員ステータス</th>
   </thead>
+
   <% @customers.each do |customer| %>
   <tbody>
     <tr>
@@ -17,8 +19,9 @@
     </tr>
   </tbody>
   <% end %>
+
 </table>
 
-<div>
+<div class="d-flex justify-content-center">
   <%= paginate @customers %>
 </div>

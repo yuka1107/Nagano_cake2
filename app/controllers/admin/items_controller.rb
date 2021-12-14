@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def new
     @item = Item.new
   end
@@ -35,6 +35,6 @@ class Admin::ItemsController < ApplicationController
   private
   #ストロングパラメーター
   def item_params
-    params.require(:item).permit(:genre_id, :name, :image_id, :introduction, :price, :is_active)
+    params.require(:item).permit(:genre_id, :name, :image, :introduction, :price, :is_active)
   end
 end

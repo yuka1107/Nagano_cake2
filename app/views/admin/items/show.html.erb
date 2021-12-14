@@ -1,22 +1,46 @@
-<h2>商品詳細</h2>
+<h4>商品詳細</h4>
 
-<%= attachment_image_tag @item, :image, :fill, 300, 300 %>
-  <div>
-    <h4>商品名</h4>
-    　<%= @item.name %>
-    <h4>商品説明</h4>
-      <%= @item.introduction %>
-    <h4>商品ジャンル</h4>
-      <%= @item.genre.name %>
-    <h4>税込み価格</h4>
-      <%= @item.price %>円
-    <h4>販売状況</h4>
-      <% if @item.is_active == true %>
-        販売中
-      <% else %>
-        販売停止中
-      <% end %>
+<div class="container">
+  <div class="row">
+    
+    <div class="col-lg-5 text-right">
+       <%= attachment_image_tag @item, :image, :fill, 400, 300 %>
+    </div>
+    
+    <div class="col-lg-7">
       
-      <%= link_to "編集", edit_admin_item_path(@item), class:"btn btn-success" 
+      <table>
+        <tbody>
+          <tr>
+            <td>商品名</td>
+            <td><%= @item.name %></td>
+          </tr>
+          <tr>
+            <td>商品説明</td>
+            <td><%= @item.introduction %></td>
+          </tr>
+          <tr>
+            <td>ジャンル</td>
+            <td><%= @item.genre.name %></td>
+          </tr>
+          <tr>
+            <td>税込価格<br>(税抜価格)</td>
+            <td><%= @item.with_tax_price.to_s(:delimited) %> (<%= @item.price.to_s(:delimited) %>)円</td>
+          </tr>
+          <tr>
+            <td>販売ステータス</td>
+            <td>
+              <%= @item.is_active == true ? "販売中" : "販売中止" %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="mx-5">
+        <%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-sm btn-success"%>
+      </div>
+      
+    </div>
+    
   </div>
-<% end %>
+</div>  
