@@ -13,9 +13,12 @@
   <body>
 
     <header>
-      <nav class="navbar navbar-expand-lg">
+      <nav class="navbar navbar-expand-lg navber-dark">
         <div class="container">
-          <a class="navbar-brand text-dark border rounded p-3" href="/"><span>LOGO</span></a>
+          <a class="navbar-brand text-dark border rounded p-2" href="/"><span>LOGO</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
             <ul class="navbar-nav ml-auto">
               <% if customer_signed_in? %>
               <li class = "nav-item  nav-link text-light border rounded mx-3">
@@ -38,7 +41,7 @@
                 <%= link_to "会員一覧", admin_customers_path, class: "text-dark" %>
               </li>
               <li class = "nav-item  nav-link text-light border rounded mx-3">
-                <%= link_to "注文一覧", admin_root_path, class: "text-dark" %>
+                <%= link_to "注文履歴一覧", admin_root_path, class: "text-dark" %>
               </li>
               <li class = "nav-item  nav-link text-light border rounded mx-3">
                 <%= link_to "ジャンル一覧", admin_genres_path, class: "text-dark" %>
@@ -70,7 +73,7 @@
     </main>
 
     <footer>
-      <div class="container mt-5"></div>
+
     </footer>
 
   </body>

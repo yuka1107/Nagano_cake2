@@ -1,7 +1,11 @@
 <div class="container">
   <div class="row">
-    <h4 class="mx-5 col-xs-7">商品一覧</h4>
-    <label class="col-xs-5 row justify-content-end mx-5"><%= button_to "+", {controller: 'items', action: 'new'}, {method: :get } %></label>
+    <h4 class="header col-lg-2 text-center bg-light my-4 ml-5">商品一覧</h4>
+      <div class="col-lg-2 text-center my-4 ml-auto">
+        <%= link_to new_admin_item_path, class: 'text-dark' do %>
+        <i class="fas fa-plus-circle"></i>
+        <% end %>
+      </div>
   </div>
 </div>
 
