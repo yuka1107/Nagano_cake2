@@ -1,6 +1,6 @@
-<h4>配送先編集</h4>
+<h4 class="mx-5">配送先編集</h4>
 
-<div>
+<div class="mx-4">
   <% form_with model: @address, local:true do |f| %>
   <table>
     <tbody>
@@ -15,7 +15,7 @@
       <tr>
         <td>宛名</td>
         <td><%= f.text_field :name %></td>
-        <td><%= f.submit '変更内容を保存', class: "btn btn-success" %></td>
+        <td><button type="submit" class="btn btn-success mx-5">変更内容を保存</button></td>
       </tr>
     </tbody>
   </table>

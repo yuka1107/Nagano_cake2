@@ -1,45 +1,45 @@
 <h2>会員情報編集</h2>
 
 <div class="d-flex justify-content-center">
-  <%= form_with model: @customer. url: customers_path, method: :put, local:true do |f| %>
+  <%= form_with model: @customer, url: customers_path, method: :put, local:true do |f| %>
   <table>
     <tbody>
       <tr>
         <td>氏名</td>
         <td>
-          <%= f.text_field :last_name %>
-          <%= f.text_field :first_name %>
+           <%= f.text_field :last_name, autofocus: true %>
+           <%= f.text_field :first_name, autofocus: true %>
         </td>
       </tr>
       <tr>
         <td>フリガナ</td>
         <td>
-          <%= f.text_field :last_name_kana %>
-          <%= f.text_field :first_name_kana %>
+          <%= f.text_field :last_name_kana, autofocus: true %>
+          <%= f.text_field :first_name_kana, autofocus: true %>
         </td>
       </tr>
       <tr>
-      　<td>郵便番号</td>
-      　<td><%= f.text_field :postal_code %></td>
+        <td>郵便番号</td>
+        <td><%= f.text_field :postal_code, autofocus: true %></td>
       </tr>
       <tr>
-      　<td>住所</td>
-      　<td><%= f.text_field :address %></td>
+        <td>住所</td>
+        <td><%= f.text_field :address, autofocus: true %></td>
       </tr>
       <tr>
-      　<td>電話番号</td>
-      　<td><%= f.telephone_field :telephone_number %></td>
+        <td>電話番号</td>
+        <td><%= f.telephone_field :telephone_number, autofocus: true %></td>
       </tr>
       <tr>
-      　<td>メールアドレス</td>
-      　<td><%= f.email_field :email %></td>
+        <td>メールアドレス</td>
+        <td><%= f.email_field :email, autofocus: true %></td>
       </tr>
       <tr>
         <td></td>
         <td>
-          <%= f.submit '編集内容を保存', class: "btn btn-success" %>
-      　   <%= link_to "退会する", unsubscribe_customers_path, class: "btn btn-danger" %>
-      　</td>
+          <button type="submit" class="btn btn-success">編集内容を変更を保存</button>
+          <%= link_to "退会する", unsubscribe_customers_path, class: "btn btn-danger mx-5" %>
+        </td>
       </tr>
     </tbody>
   </table>

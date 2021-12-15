@@ -33,7 +33,7 @@
     </tr>
     <tr>
       <td>住所</td>
-      <td><%= f.text_field :address %></td>
+      <td><%= f.text_field :address, size: 70 %></td>
     </tr>
     <tr>
       <td>宛名</td>
@@ -45,5 +45,5 @@
 <% end %>
 
 <div class="text-center">
-  <%= f.submit '確認画面へ進む', class="btn btn-primary" %>
+  <button type="submit" class="btn btn-primary">確認画面へ進む</button>
 </div>

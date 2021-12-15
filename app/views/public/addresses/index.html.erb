@@ -1,6 +1,6 @@
-<h4>配送先登録/一覧</h4>
+<h4 class="mx-5">配送先登録/一覧</h4>
 
-<div>
+<div class="mx-4">
   
   <%= form_with model: @address, local:true do |f| %>
   <table>
@@ -10,27 +10,27 @@
     </tr>
     <tr>
       <td>住所</td>
-      <td><%= f.text_field :address %></td>
+      <td><%= f.text_field :address, size: 70 %></td>
     </tr>
     <tr>
       <td>宛名</td>
       <td><%= f.text_field :name %></td>
-      <td><%= f.submit '新規登録', class: "btn btn-success" %></td>
+      <td><button type="submit" class="btn btn-success mx-5">新規登録</button></td>
     </tr>
   </table>
   <% end %>
 
-  <table class="table-bordered">
-    <thead>
+  <table class="table-bordered my-4">
+    
       <tr>
         <td>郵便番号</td>
         <td>住所</td>
         <td>宛名</td>
         <td></td>
       </tr>
-    </thead>
+   
     <% @addresses.each do |address| %>
-    <tbody>
+    
       <tr>
         <td><%= address.postal_code %></td>
         <td><%= address.address %></td>
@@ -40,7 +40,7 @@
           <%= link_to "削除する", address_path(address.id), method: :delete, class: "btn btn-sm btn-danger" %>
         </td>
       </tr>
-    </tbody>
+    
     <% end %>
   </table>
   
