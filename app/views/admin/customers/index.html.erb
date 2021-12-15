@@ -1,14 +1,12 @@
-<h4>会員一覧</h4>
+<h4 class="mx-5">会員一覧</h4>
 
-<table>
-
+<table class="table mx-auto" style="width: 60%;">
   <thead>
     <th>会員ID</th>
     <th>氏名</th>
     <th>メールアドレス</th>
-    <th>会員ステータス</th>
+    <th>ステータス</th>
   </thead>
-
   <% @customers.each do |customer| %>
   <tbody>
     <tr>
@@ -19,9 +17,5 @@
     </tr>
   </tbody>
   <% end %>
-
 </table>
-
-<div class="d-flex justify-content-center">
-  <%= paginate @customers %>
-</div>
+<div class="d-flex justify-content-center"><%= paginate @customers %></div>

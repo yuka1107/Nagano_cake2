@@ -1,11 +1,11 @@
-<h4>ジャンル編集</h4>
+<h4 class="mx-5">ジャンル編集</h4>
 
-<div>
+<div class="mx-5">
   <!-- form_with部分 -->
   <%= form_with model: [:admin, @genre], local:true do |f| %>
     <p class="font-weight-bold">ジャンル名
       <%= f.text_field :name %>
-      <%= f.submit '編集内容を保存', class: "btn btn-success" %>
+      <button type="submit" class="btn btn-success">変更を保存</button>
     </p>
   <% end %>
 </div>

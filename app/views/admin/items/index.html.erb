@@ -1,7 +1,11 @@
-<h4>商品一覧</h4>
-<i class="bi bi-plus-circle"></i>
+<div class="container">
+  <div class="row">
+    <h4 class="mx-5 col-xs-7">商品一覧</h4>
+    <label class="col-xs-5 row justify-content-end mx-5"><%= button_to "+", {controller: 'items', action: 'new'}, {method: :get } %></label>
+  </div>
+</div>
 
-<table>
+<table class="table mx-auto" style="width: 80%;">
   <thead>
     <tr>
       <th>商品ID</th>

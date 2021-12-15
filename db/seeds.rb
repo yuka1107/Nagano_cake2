@@ -9,5 +9,5 @@
 # adminの初期ログインメールとパスワード
 Admin.create!(
   email: 'yukauchiumi1995@gmail.com',
-  password: '19950710'
+  password: '123456'
 )

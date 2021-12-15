@@ -1,14 +1,11 @@
-<h4>商品詳細</h4>
+<h4 class="mx-5 col-lg-7">商品詳細</h4>
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    
     <div class="col-lg-5 text-right">
-       <%= attachment_image_tag @item, :image, :fill, 400, 300 %>
+       <%= attachment_image_tag @items, :image, :fill, 3300, 200 %>
     </div>
-    
     <div class="col-lg-7">
-      
       <table>
         <tbody>
           <tr>
@@ -35,12 +32,7 @@
           </tr>
         </tbody>
       </table>
-      
-      <div class="mx-5">
-        <%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-sm btn-success"%>
-      </div>
-      
+      <div class="mx-5"><%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-sm btn-success"%></label>
     </div>
-    
   </div>
-</div>  
+</div>

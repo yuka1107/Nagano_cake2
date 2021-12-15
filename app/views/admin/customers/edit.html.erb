@@ -1,5 +1,5 @@
-<h2><%= @customer.name %>さんの会員情報編集</h2>
-<div>
+<h4 class="mx-5"><%= @customer.name %>さんの会員情報編集</h4>
+<div class="d-flex justify-content-center">
   <%= form_with model: @customer, url: admin_customer_path(@customer.id), local:true do |f| %>
   
     <table>
