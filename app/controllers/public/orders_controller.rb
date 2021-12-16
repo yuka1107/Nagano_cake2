@@ -5,7 +5,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
   end
 
-  def confirm
+  def comfirm
     @order = Order.new(order_params)
     @cart_items = CartItem.all
     @order.shipping_cost = 800
@@ -19,9 +19,6 @@ class Public::OrdersController < ApplicationController
       @order.address = @address.address
       @order.name = @address.name
     end
-  end
-
-  def thanks
   end
 
   def create
@@ -41,6 +38,9 @@ class Public::OrdersController < ApplicationController
      end
     CartItem.destroy_all
     redirect_to thanks_orders_path
+  end
+
+  def thanks
   end
 
   def index

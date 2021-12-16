@@ -1,14 +1,13 @@
 <div class="container">
   <div class="row">
-    <h4 class="mx-5 col-xs-7">ショッピングカート</h4>
-    <div lass="col-xs-5 row justify-content-end mx-5">
-      <%= button_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class: "btn btn-danger"%>
-    </div>
+    <h4 class="bg-light px-4 align-items-center">ショッピングカート</h4>
+    
+      <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class: "btn btn-danger"%>
+    
   </div>
 </div>
 
-<table class="table-bordered mx-auto" style="width: 60%;">
-  
+<table class="table table-hover table-bordered" style="width: 80%;">
   <thead>
     <th>商品名</th>
     <th>単価(税込)</th>
@@ -32,12 +31,11 @@
     </tr>
     <% end %>
   </tbody>
-  
 </table>
 
 <div class="d-flex mx-auto cart_item" style="width: 60%;">
   <%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %>
-  <table>
+  <table class="table-bordered float-end">
     <tbody>
       <tr>
         <td>合計金額</td>

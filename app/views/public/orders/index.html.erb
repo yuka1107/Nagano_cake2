@@ -22,14 +22,14 @@
           </td>
           <td>
             <% order.order_details.each do |order_detail| %>
-            <%= order_detail.item.name %><br>
+              <%= order_detail.item.name %><br>
             <% end %>
           </td>
-          <td><%= order.total_payment.to_s(:delimited) %>円</td>
+          <td><%= order.total_payment.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1,') %>円</td>
           <td><%= order.status_i18n %></td>
           <td>
             <%= link_to order_path(order.id) do %>
-            <button class="btn btn-primary" >表示する</button>
+              <button class="btn btn-primary" >表示する</button>
             <% end %>
           </td>
         </tr>

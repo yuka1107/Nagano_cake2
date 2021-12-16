@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     post 'orders/comfirm' => "orders#comfirm"
     resources :orders, only: [:index, :new, :show, :create] do
       collection do
-      get 'complete'
+      get 'thanks'
       end
     end
   end

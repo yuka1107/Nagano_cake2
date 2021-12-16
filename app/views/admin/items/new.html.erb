@@ -9,7 +9,7 @@
       <table style="margin:0 auto;">
         <tbody>
           <!-- form_with部分 -->
-          <%= form_with model: @item, url: admin_items_path, local:true do |f| %>
+          <%= form_with model: [:admin, @item], local:true do |f| %>
           <tr>
             <td>商品画像</td>
             <td><%= f.attachment_field :image %></td>
@@ -20,7 +20,7 @@
           </tr>
           <tr>
             <td>商品説明</td>
-            <td><%= f.text_area :introduction, size:"30x5" %></td>
+            <td><%= f.text_area :introduction %></td>
           </tr>
           <tr>
             <td>ジャンル</td>
@@ -41,11 +41,11 @@
           </tr>
           <tr>
             <td></td>
-            <td style="center">
+            <td>
               <button type="submit" class="btn btn-success">新規登録</button>
             </td>
           </tr>
-        <% end %>
+          <% end %>
         </tbody>
       </table>
     </div>

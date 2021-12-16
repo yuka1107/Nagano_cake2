@@ -1,21 +1,26 @@
-<h4 class="mx-5">会員一覧</h4>
+<div class="container">
+  <h4 class="bg-light mx-5">会員一覧</h4>
 
-<table class="table mx-auto" style="width: 60%;">
-  <thead>
-    <th>会員ID</th>
-    <th>氏名</th>
-    <th>メールアドレス</th>
-    <th>ステータス</th>
-  </thead>
-  <% @customers.each do |customer| %>
-  <tbody>
-    <tr>
-      <td><%= customer.id %></td>
-      <td><%= link_to customer.name, admin_customer_path(customer.id) %></td>
-      <td><%= customer.email %></td>
-      <td><%= customer.is_active == true ? "有効" : "退会" %></td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
-<div class="d-flex justify-content-center"><%= paginate @customers %></div>
+  <table class="table mx-auto">
+  　<thead class="thead-light">
+      <th>会員ID</th>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th>ステータス</th>
+    </thead>
+    <% @customers.each do |customer| %>
+  　<tbody>
+      <tr>
+        <td><%= customer.id %></td>
+        <td><%= link_to customer.name, admin_customer_path(customer.id) %></td>
+        <td><%= customer.email %></td>
+        <td><%= customer.is_active == true ? "有効" : "退会" %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>
+
+<div class="d-flex justify-content-center">
+  <%= paginate @customers %>
+</div>

@@ -1,49 +1,47 @@
 <h4 class="mx-5">注文情報入力</h4>
 
-<%= form_with model:@order, url: orders_comfirm_path, local:true do |f| %>
 <h4 class="mx-3 font-weight-bold">支払方法</h4>
-<div class="mx-4">
-  <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-  <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %><br>
-  <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-  <%= f.label :payment_method, Order.payment_methods_i18n[:transfer]%>
-</div>
+  <%= form_with model:@order, url: orders_comfirm_path, local:true do |f| %>
+  <div class="mx-4">
+    <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+    <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %><br>
+    <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+    <%= f.label :payment_method, Order.payment_methods_i18n[:transfer]%>
+  </div>
 
-<h4 class="mx-3 font-weight-bold">お届け先</h4>
-<div class="mx-4">
-  <p>
-    <%= f.radio_button :address_select, "a" %>
-    <%= f.label :address_id, "ご自身の住所" %><br>
-    <%= current_customer.full_address %>
-  </p>
-
-  <p>
+  <h4 class="mx-3 font-weight-bold">お届け先</h4>
+  <div class="mx-4">
+    <p>
+      <%= f.radio_button :address_select, "a" %>
+      <%= f.label :address_id, "ご自身の住所" %><br>
+      <%= current_customer.full_address %>
+    </p>
+    <p>
     <%= f.radio_button :address_select, "b" %>
     <%= f.label :address_id, "登録済住所から選択" %><br>
     <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :full_address) %>
-  </p>
-
-  <p>
-    <%= f.radio_button :address_select, "c" %>
-    <%= f.label :address_id, "新しいお届け先" %>
-  <table>
-    <tr>
-      <td>郵便番号(ハイフンなし)</td>
-      <td><%= f.text_field :postal_code %></td>
-    </tr>
-    <tr>
-      <td>住所</td>
-      <td><%= f.text_field :address, size: 70 %></td>
-    </tr>
-    <tr>
-      <td>宛名</td>
-      <td><%= f.text_field :name %></td>
-    </tr>
-  </table>
-　</p>
-</div>
-<% end %>
+    </p>
+    <p>
+      <%= f.radio_button :address_select, "c" %>
+      <%= f.label :address_id, "新しいお届け先" %>
+      <table>
+      <tr>
+        <td>郵便番号(ハイフンなし)</td>
+        <td><%= f.text_field :postal_code %></td>
+      </tr>
+      <tr>
+        <td>住所</td>
+        <td><%= f.text_field :address %></td>
+      </tr>
+      <tr>
+        <td>宛名</td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+    </table>
+    </p>
+  </div>
 
 <div class="text-center">
   <button type="submit" class="btn btn-primary">確認画面へ進む</button>
 </div>
+<% end %>

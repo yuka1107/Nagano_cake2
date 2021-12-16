@@ -6,7 +6,7 @@
     <div class="col-lg-7">
       <h2 class="font-weight-bold"><%= @item.name %></h2>
       <p><%= @item.introduction %></p>
-      <p class="font-weight-bold">￥<%= @item.with_tax_price.to_s(:delimited) %>(税込)</p>
+      <h4 class="font-weight-bold">￥<%= @item.with_tax_price.to_s(:delimited) %>(税込)</h4>
 
       <%= form_with model:@cart_item, local:true do |f| %>
       <%= f.hidden_field :item_id, value: @item.id %>

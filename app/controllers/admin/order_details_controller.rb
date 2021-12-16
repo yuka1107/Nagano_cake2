@@ -5,13 +5,13 @@ class Admin::OrderDetailsController < ApplicationController
   def update
     @order_detail = OrderDetail.find(params[:id])
     @order_detail.update(order_detail_params)
-    if @order_detail.making == "production"
+    if @order_detail.making_ == "production"
       @order_detail.order.update(status: "production")
     end
     @order = @order_detail.order
     sum = 0
     @order.order_details.each do |order_detail|
-      if order_detail.making == "completion"
+      if order_detail.making_status == "completion"
         sum += 1
       end
     end
