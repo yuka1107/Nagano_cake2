@@ -11,7 +11,7 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order.update(order_params)
     if @order.status == "confirm"
-      @order.order_details.update(making: "wait")
+      @order.order_details.update(making_status: "wait")
     end
     redirect_to admin_order_path(@order.id)
   end
@@ -19,6 +19,6 @@ class Admin::OrdersController < ApplicationController
   private
   #ストロングパラメーター
   def order_params
-    params.require(:oder).permit(:status)
+    params.require(:order).permit(:status)
   end
 end

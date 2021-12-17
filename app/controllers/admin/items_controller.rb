@@ -8,11 +8,11 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.save
-    redirect_to admin_items_path(@item.id)
+    redirect_to admin_item_path(@item.id)
   end
 
   def index
-    @items = Item.page(params[:page]).reverse_order
+    @items = Item.page(params[:page]).per(10)
   end
 
   def show

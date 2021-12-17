@@ -5,7 +5,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
   end
 
-  def comfirm
+  def confirm
     @order = Order.new(order_params)
     @cart_items = CartItem.all
     @order.shipping_cost = 800
