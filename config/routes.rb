@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       delete 'destroy_all'
       end
     end
-    post 'orders/comfirm' => "orders#comfirm"
+    post 'orders/confirm' => "orders#confirm"
     resources :orders, only: [:index, :new, :show, :create] do
       collection do
       get 'thanks'
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   passwords:     'admins/passwords',
   registrations: 'admins/registrations'
   }
-  
+
   devise_for :customers, controllers: {
     sessions:      'customers/sessions',
     passwords:     'customers/passwords',
