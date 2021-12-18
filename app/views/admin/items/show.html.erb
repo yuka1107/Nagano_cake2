@@ -1,12 +1,12 @@
-<h4 class="bg-light mx-5">商品詳細</h4>
+<h4 class="bg-light m-5">商品詳細</h4>
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-5 text-right">
-       <%= attachment_image_tag @item, :image, :fill, 400, 300 %>
+    <div class="col-md-3">
+       <%= attachment_image_tag @item, :image, class: "img-fluid" %>
     </div>
-    <div class="col-lg-7">
-      <table>
+    <div class="col-md-6">
+      <table class="table table-borderless">
         <tbody>
           <tr>
             <td>商品名</td>
@@ -22,17 +22,20 @@
           </tr>
           <tr>
             <td>税込価格<br>(税抜価格)</td>
-            <td><%= @item.with_tax_price.to_s(:delimited) %> (<%= @item.price.to_s(:delimited) %>)円</td>
+            <td><%= "#{@item.with_tax_price} (#{@item.price}) 円" %></td>
           </tr>
           <tr>
             <td>販売ステータス</td>
             <td>
-              <%= @item.is_active == true ? "販売中" : "販売中止" %>
+              <%= @item.is_active ? "販売中" : "販売停止中" %>
             </td>
           </tr>
         </tbody>
       </table>
-      <div class="mx-5"><%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-sm btn-success"%></label>
     </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-success" %>
   </div>
 </div>

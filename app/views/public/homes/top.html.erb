@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="row">
+<div class="container-lg">
+  <div class="row p-5">
     <div class="offset-md-1 col-md-6 border border-dark py-3">
       <p>
         ようこそ、ながのCAKEへ！<br>
@@ -8,15 +8,15 @@
         購入には会員登録が必要になります。
       </p>
     </div>
-  </div>  
+  </div>
 
-  <div class="row">
+  <div class="row p-3">
     <h2 class="font-weight-bold offset-md-4 col-md-3">新着商品</h2>
     <div class="offset-md-4 col-md-8">
       <% @items.first(4).each do |item| %>
-      <div class="item mr-5">
+      <div class="col-3">
         <%= link_to item_path(item.id) do %>
-          <%= attachment_image_tag item, :image, :fill, 300, 200 %>
+          <%= attachment_image_tag item, :image, class: "img-fluid" %>
         <% end %>
         <p class="font-weight-bold"><%= item.name %></p>
         <p class="font-weight-bold">¥<%= item.price.to_s(:delimited) %></p>

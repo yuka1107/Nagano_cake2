@@ -1,84 +1,102 @@
-<h4>注文履歴詳細</h4>
+<div class="container-md">
+  <h2 class="bg-light m-5">注文履歴詳細</h2>
+  <div class="row align-items-center">
+    <div class="col-md-3">
+      <h5 class="font-weight-bold">購入者</h5>
+    </div>
+    <div class="col-md-4">
+      <%= link_to "#{@order.customer.last_name}#{@order.customer.first_name}", admin_customer_path(@order.customer) %>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div class="col-md-3">
+      <h5 class="font-weight-bold">注文日</h5>
+    </div>
+    <div class="col-md-4">
+      <%= @order.created_at.strftime("%Y/%m/%d") %>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div class="col-md-3">
+      <h5 class="font-weight-bold">配送先</h5>
+    </div>
+    <div class="col-md-4">
+      <%= @order.address %>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div class="col-md-3">
+      <h5 class="font-weight-bold">支払方法</h5>
+    </div>
+    <div class="col-md-4">
+      <%= @order.payment_method_i18n %>
+    </div>
+  </div>
+  <%= form_with model: @order, url: admin_order_path, local:true do |f| %>
+    <div class="row align-items-center">
+      <div class="col-md-3">
+        <h5 class="font-weight-bold">注文ステータス</h5>
+      </div>
+      <div class="col-md-4">
+        <%= f.select :status, Order.statuses.keys.map {|k| [t("enums.order.status.#{k}"), k]} %>
+        <%= f.submit "更新", class: "btn btn-success ml-3" %>
+      </div>
+    </div>
+  <% end %>
+  <div class="row my-3">
+    <div class="col-lg-7">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th class="font-weight-bold">商品名</th>
+            <th class="font-weight-bold">単価（税込）</th>
+            <th class="font-weight-bold">数量</th>
+            <th class="font-weight-bold">小計</th>
+            <th class="font-weight-bold">制作ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.order_details.each do |detail| %>
+            <tr>
+              <td><%= detail.item.name %></td>
+              <td><%= detail.item.with_tax_price %></td>
+              <td><%= detail.amount %></td>
+              <td><%= detail.subtotal %></td>
+              <td>
+                <%= form_with model: detail, url: admin_order_detail_path, local:true do |f| %>
+                  <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [t("enums.order_detail.making_status.#{k}"), k]} %>
+                  <%= f.submit "更新", class: "btn btn-success" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
-<table>
-  <tbody>
-    <tr>
-      <td class="font-weight-bold">購入者</td>
-      <td><%= link_to @order.customer.name, admin_customer_path(@customer.id) %></td>
-    </tr>
-    <tr>
-      <td class="font-weight-bold">注文日</td>
-      <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-    </tr>
-    <tr>
-      <td class="font-weight-bold">配送先</td>
-      <td>
-        〒<%= @order.postal_code %><span> </span><%= @order.address %><br>
-        <%= @order.name %>
-      </td>
-    </tr>
-    <tr>
-      <td class="font-weight-bold">支払方法</td>
-      <td><%= @order.payment_method_i18n %></td>
-    </tr>
-    <tr>
-      <td class="font-weight-bold">注文ステータス</td>
-      <%= form_with model: [:admin, @order], local:true do |f| %>
-      <td><%= f.select :status, Order.statuses_i18n.invert %></td>
-      <td><%= f.submit '更新', class="btn btn-success" %></td>
-    　<% end %>
-    </tr>
-  </tbody>
-</table>
-
-<div class="container">
-  <div class="row">
-    
-    <table class="col-9">
-      
-      <thead>
-        <th>商品名</th>
-        <th>単価(税込)</th>
-        <th>数量</th>
-        <th>小計</th>
-        <th>製作ステータス</th>
-        <th></th>
-      </thead>
-      
-      <tbody>
-        <% total = 0 %>
-        <% @order_details.each do |order_detail| %>
-        <tr>
-          <td><%= order_detail.item.name %></td>
-          <td><%= order_detail.with_tax_price.to_s(:delimited) %></td>
-          <td><%= order_detail.amount %></td>
-          <td><%= order_detail.subtotal.to_s(:delimited) %></td>
-          <% total += order_detail.subtotal %>
-          <td>
-            <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), local:true do |f| %>
-            <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
-            <%= f.submit '更新', class="btn btn-success" %>
-            <% end %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-    
-    <table class="col-3">
-      <tr>
-        <td class="font-weight-bold">商品合計</td>
-        <td><%= total.to_s(:delimited) %>円</td>
-      </tr>
-      <tr>
-        <td class="font-weight-bold">送料</td>
-        <td><%= @order.shipping_cost.to_s(:delimited) %>円</td>
-      </tr>
-      <tr>
-        <td class="font-weight-bold">請求合計金額</td>
-        <td><%= @order.total_payment.to_s(:delimited) %>円</td>
-      </tr>
-    </table>
-    
+    <div class="col-lg-5">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <th class="font-weight-bold">商品合計</th>
+            <td>
+              <% total = 0 %>
+              <% @order.order_details.each do |detail| %>
+                <% total += detail.subtotal %>
+              <% end %>
+              <%= "#{total}円" %>
+            </td>
+          </tr>
+          <tr>
+            <th class="font-weight-bold">送料</th>
+            <td><%= "#{@order.postage}円" %></td>
+          </tr>
+          <tr>
+            <th class="font-weight-bold">請求金額合計</th>
+            <td class="font-weight-bold"><%= "#{@order.payment}円" %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

@@ -1,28 +1,19 @@
 Rails.application.routes.draw do
 
   scope module: :public do
-    root to: 'homes#top'
+    root to: "homes#top"
     get "about" => "homes#about"
-    resources :items, only: [:show, :index]
-    resources :addresses, except: [:show, :new]
-    resource :customers, only: [:update, :edit] do
-      collection do
-      get 'unsubscribe'
-      patch 'withdraw'
-      end
-    end
-    get "customers/my_page" => "customers#show"
-    resources :cart_items, only: [:index, :update, :destroy, :create] do
-      collection do
-      delete 'destroy_all'
-      end
-    end
-    post 'orders/confirm' => "orders#confirm"
-    resources :orders, only: [:index, :new, :show, :create] do
-      collection do
-      get 'thanks'
-      end
-    end
+    resources :items, only:[:index, :show]
+    resource :customers, only:[:show, :edit, :update]
+    post "customers/unsubscribe" => "customers#unsubscribe", as: "unsubscribe_customers"
+    patch "customers/withdraw" => "customers#withdraw", as: "withdraw_customers"
+    resources :addresses
+    post "orders/confirm" => "orders#confirm", as: "confirm_orders"
+    get "orders/thanks" => "orders#thanks", as: "thanks_orders"
+    post "orders/determine" => "orders#determine", as: "determine_orders"
+    resources :orders, only:[:new, :index, :show]
+    delete "cart_items/destroy_all" => "cart_items#destroy_all", as: "destroy_all_cart_items"
+    resources :cart_items, only:[:index, :update, :destroy, :create]
   end
 
   devise_for :admins, controllers: {
@@ -38,11 +29,11 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    root to: 'homes#top'
+    root to: "/admin/homes#top"
    resources :orders, only: [:show, :update]
-   resources :customers, except: [:destroy, :new, :create]
-   resources :genres, except: [:destroy, :new, :show]
-   resources :items, except: [:destroy]
+   resources :customers
+   resources :genres
+   resources :items
    resources :order_details, only: [:update]
   end
 

@@ -8,32 +8,12 @@ class Customer < ApplicationRecord
   has_many :addresses, dependent: :destroy
   has_many :orders, dependent: :destroy
 
-  validates :last_name, presence: true
-  validates :first_name, presence: true
-  validates :last_name_kana, presence: true
-  validates :first_name_kana, presence: true
-  validates :email, presence: true
-  validates :postal_code, presence: true
-  validates :address, presence: true
-  validates :telephone_number, presence: true
-
-  def name
-    self.last_name + self.first_name
-  end
-
-  def full_name
-    self.last_name + "　" + self.first_name
-  end
-
-  def name_kana
-    self.last_name_kana + "　" + self.first_name_kana
-  end
-
-  def full_address
-    '〒' + postal_code + ' ' + address + ' ' + name
-  end
-  
-  
-
+ def cart_total
+    total = 0
+    cart_items.each do |cart_item|
+      total += cart_item.subtotal
+    end
+    return total
+ end
 
 end

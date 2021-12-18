@@ -2,14 +2,16 @@ class Public::AddressesController < ApplicationController
   before_action :authenticate_customer!
 
   def create
-    @address = current_customer.addresses.new(address_params)
-    @address.save
-    redirect_to addresses_path
+     address = Address.new(address_params)
+    address.customer_id = current_customer.id
+    if address.save
+      redirect_to addresses_path
+    end
   end
 
   def index
     @address = Address.new
-    @addresses = current_customer.addresses
+    @addresses = Address.where(customer_id: current_customer.id)
   end
 
   def edit

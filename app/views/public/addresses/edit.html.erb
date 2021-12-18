@@ -1,21 +1,26 @@
-<h4>配送先編集</h4>
-
-<div>
-  <%= form_with model: @address, local:true do |f| %>
-  <table>
-    <tr>
-      <td>郵便番号(ハイフンなし)</td>
-      <td><%= f.text_field :postal_code %></td>
-    </tr>
-    <tr>
-      <td>住所</td>
-      <td><%= f.text_field :address, size: 70 %></td>
-    </tr>
-    <tr>
-      <td>宛名</td>
-      <td><%= f.text_field :name %></td>
-      <td><button type="submit" class="btn btn-success mx-5">変更内容を保存</button></td>
-    </tr>
-  </table>
+<div class="container">
+  <h2 class="bg-light m-5">配送先編集</h2>
+  <%= form_with model: @address, url: address_path, local:true do |f| %>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td><%= f.label "郵便番号(ハイフンなし)" %></td>
+          <td><%= f.text_field :postal_code, class: "form-control" %></td>
+          <td width="70"></td>
+        </tr>
+        <tr>
+          <td><%= f.label "住所" %></td>
+          <td colspan="2"><%= f.text_field :address, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label "宛名" %></td>
+          <td><%= f.text_field :name, class: "form-control" %></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row justify-content-center">
+      <%= f.submit "変更内容を保存", class: "btn btn-success" %>
+    </div>
   <% end %>
 </div>
