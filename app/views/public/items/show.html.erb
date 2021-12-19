@@ -4,7 +4,7 @@
       <%= attachment_image_tag @item, :image, class: "img-fluid" %>
     </div>
     <div class="col">
-      <h4 class="font-weight-bold my-auto"><%= @item.name %></h4>
+      <h2 class="font-weight-bold my-auto"><%= @item.name %></h2>
       <p class="my-2">
         <%= @item.introduction %>
       </p>
@@ -14,7 +14,7 @@
       <%= form_with model: CartItem.new, url: cart_items_path, local:true do |f| %>
         <%= f.hidden_field :item_id, value: @item.id %>
         <%= f.select :amount, *[1..10], { include_blank: '個数選択'}, class: "form-control" %>
-        <%= f.submit "カートに入れる", class: "btn btn-success ml-3" %>
+        <%= f.submit "カートに入れる", class: "btn btn-success my-3" %>
       <% end %>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <div class="container-lg">
   <div class="row p-5">
-    <div class="offset-md-1 col-md-6 border border-dark py-3">
+    <div class="border border-dark py-4">
       <p>
         ようこそ、ながのCAKEへ！<br>
         このサイトは、ケーキ販売のECサイトになります。<br>
@@ -10,9 +10,9 @@
     </div>
   </div>
 
-  <div class="row p-3">
-    <h2 class="font-weight-bold offset-md-4 col-md-3">新着商品</h2>
-    <div class="offset-md-4 col-md-8">
+  <div class="row">
+    <h2 class="font-weight-bold mx-5">新着商品</h2>
+    <div class="d-flex mx-auto">
       <% @items.first(4).each do |item| %>
       <div class="col-3">
         <%= link_to item_path(item.id) do %>

@@ -3,18 +3,18 @@
 
   <%= form_with model: @order, url: confirm_orders_path, local:true do |f| %>
     <div class="my-3">
-      <h5>支払方法</h4>
+      <h5 class="font-weight-bold">支払方法</h4>
       <div class="form-check ml-5">
         <%= f.radio_button :payment_method, Order.payment_methods.key(0), class: "form-check-input" %>
         <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], class: "form-check-label" %>
       </div>
       <div class="form-check ml-5">
         <%= f.radio_button :payment_method, Order.payment_methods.key(1), class: "form-check-input" %>
-        <%= f.label :payment_method, Order.payment_methods_i18n[:bank_transfer], class: "form-check-label" %>
+        <%= f.label :payment_method, Order.payment_methods_i18n[:transfer], class: "form-check-label" %>
       </div>
     </div>
     <div>
-      <h5>お届け先</h5>
+      <h5 class="font-weight-bold">お届け先</h5>
       <div>
         <div class="form-check ml-5 my-2">
           <%= f.radio_button :select_address, 0, class: "form-check-input" %>
@@ -34,14 +34,20 @@
         <div class="form-check ml-5 my-2">
           <%= f.radio_button :select_address, 2, class: "form-check-input" %>
           <%= f.label :select_address, "新しいお届け先", class: "form-check-label" %>
-          <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
-          <div>
-            <%= f.text_field :postal_code %>
-            <%= f.label :address, "住所" %>
-            <%= f.text_field :address %>
-            <%= f.label :name, "宛名" %>
-            <%= f.text_field :name %>
-          </div>
+          <table>
+            <tr>
+              <td><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></td>
+              <td><%= f.text_field :postal_code %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :address, "住所" %></td>
+              <td><%= f.text_field :address, :size=>"60" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :name, "宛名" %></td>
+              <td><%= f.text_field :name %></td>
+              </tr>
+          </table>
         </div>
       </div>
     </div>

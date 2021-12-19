@@ -1,6 +1,7 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
 
+  #顧客のマイページ
   def show
     @customer = current_customer
   end
@@ -11,14 +12,19 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-    @customer.update(customer_params)
+    if @customer.update(customer_params)
     redirect_to customers_my_page_path
+    else
+      render :edit
+    end  
   end
 
+  #顧客の退会確認
   def unsubscribe
     @customer = current_customer
   end
 
+  #顧客の退会処理
   def withdraw
     @customer = current_customer
     @customer.update(is_active: false)
