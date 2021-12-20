@@ -2,7 +2,7 @@ class Public::AddressesController < ApplicationController
   before_action :authenticate_customer!
 
   def create
-     address = Address.new(address_params)
+    address = Address.new(address_params)
     address.customer_id = current_customer.id
     if address.save
       redirect_to addresses_path
@@ -26,8 +26,9 @@ class Public::AddressesController < ApplicationController
 
   def destroy
     @address = Address.find(params[:id])
-    @address.destroy
+    if @address.destroy
     redirect_to addresses_path
+    end
   end
 
   private

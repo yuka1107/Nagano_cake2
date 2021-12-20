@@ -13,15 +13,15 @@
         <th>単価(税込)</th>
         <th>数量</th>
         <th>小計</th>
+        <th></th>
       </thead>
       <tbody>
         <% @cart_items.each do |cart_item| %>
           <tr>
-            <td><%= cart_item.item.name %>
-                <%= attachment_image_tag cart_item.item, :image, :fill, 50, 50 %>
+            <td><%= attachment_image_tag cart_item.item, :image, :fill, 70, 50 %>
+                <%= cart_item.item.name %>
             </td>
             <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
-            <% total += cart_item.item.with_tax_price * cart_item.amount %>
             <td>
               <%= form_with model: cart_item, url: cart_item_path(cart_item), local:true do |f| %>
                 <%= f.select :amount, *[1..10], class: "form-control" %>

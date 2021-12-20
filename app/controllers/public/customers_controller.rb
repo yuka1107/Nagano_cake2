@@ -16,7 +16,7 @@ class Public::CustomersController < ApplicationController
     redirect_to customers_my_page_path
     else
       render :edit
-    end  
+    end
   end
 
   #顧客の退会確認
@@ -27,9 +27,10 @@ class Public::CustomersController < ApplicationController
   #顧客の退会処理
   def withdraw
     @customer = current_customer
-    @customer.update(is_active: false)
-    reset_session
-    redirect_to root_path
+    if @customer.update(is_active: false)
+      reset_session
+      redirect_to root_path
+    end  
   end
 
   private
