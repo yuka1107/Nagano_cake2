@@ -38,11 +38,11 @@
         </tr>
         <tr>
           <th class="table-active">商品合計</th>
-          <td><%= @items_total = current_customer.cart_total %></td>
+          <td><%= (@items_total = current_customer.cart_total).to_s(:delimited) %></td>
         </tr>
         <tr>
           <th class="table-active">請求金額</th>
-          <td><%= @items_total + @order.shipping_cost %></td>
+          <td><%= (@items_total + @order.shipping_cost).to_s(:delimited) %></td>
         </tr>
       </table>
     </div>

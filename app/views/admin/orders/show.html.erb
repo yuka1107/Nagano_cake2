@@ -56,14 +56,14 @@
           </tr>
         </thead>
         <tbody>
-          <% @order.order_details.each do |detail| %>
+          <% @order_details.each do |order_detail| %>
             <tr>
-              <td><%= detail.item.name %></td>
-              <td><%= detail.item.with_tax_price %></td>
-              <td><%= detail.amount %></td>
-              <td><%= detail.subtotal %></td>
+              <td><%= order_detail.item.name %></td>
+              <td><%= order_detail.item.with_tax_price.to_s(:delimited) %></td>
+              <td><%= order_detail.amount %></td>
+              <td><%= order_detail.subtotal.to_s(:delimited) %></td>
               <td>
-                <%= form_with model: detail, url: admin_order_detail_path, local:true do |f| %>
+                <%= form_with model: order_detail, url: admin_order_detail_path, local:true do |f| %>
                   <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [t("enums.order_detail.making_status.#{k}"), k]} %>
                   <%= f.submit "更新", class: "btn btn-success" %>
                 <% end %>
@@ -89,11 +89,11 @@
           </tr>
           <tr>
             <th class="font-weight-bold">送料</th>
-            <td><%= "#{@order.postage}円" %></td>
+            <td><%= "#{@order.shipping_cost}円" %></td>
           </tr>
           <tr>
             <th class="font-weight-bold">請求金額合計</th>
-            <td class="font-weight-bold"><%= "#{@order.payment}円" %></td>
+            <td class="font-weight-bold"><%= @order.total_payment.to_s(:delimited) %>円</td>
           </tr>
         </tbody>
       </table>

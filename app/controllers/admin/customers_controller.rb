@@ -1,10 +1,12 @@
 class Admin::CustomersController < ApplicationController
   before_action :authenticate_admin!
 
+  #会員一覧
   def index
-    @customers = Customer.page(params[:page]).per(10)
+    @customers = Customer.all.page(params[:page]).per(10)
   end
 
+　#会員詳細
   def show
     @customer = Customer.find(params[:id])
   end
@@ -16,7 +18,7 @@ class Admin::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     @customer.update(customer_params)
-    redirect_to  admin_customer_path(@customer.id)
+    redirect_to  admin_customer_path
   end
 
   private

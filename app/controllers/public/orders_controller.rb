@@ -27,18 +27,12 @@ class Public::OrdersController < ApplicationController
     @order.shipping_cost = 800
     @order.status = 0
     @order.customer_id = current_customer.id
+    @order.payment_method = current_customer.cart_total + @order.shipping_cost
     @order.save
-    @cart_items = CartItem.all
-    @cart_items.each do |cart_item|
-      order_detail = OrderDetail.new
-      order_detail.amount = cart_item.amount
-      order_detail.item_id = cart_item.item_id
-      order_detail.order_id = @order.id
-      order_detail.making_status= 0
-      order_detail.price = cart_item.item.price
-      order_detail.save
-     end
-    CartItem.destroy_all
+    current_customer.cart_items.all.each do |cart_item|
+      OrderDetail.create!(item_id: cart_item.item_id, amount: cart_item.amount, price: cart_item.subtotal, order_id: @order.id)
+    end
+    current_customer.cart_items.destroy_all
     redirect_to thanks_orders_path
   end
 
