@@ -24,16 +24,14 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.shipping_cost = 800
-    @order.status = 0
     @order.customer_id = current_customer.id
-    @order.payment_method = current_customer.cart_total + @order.shipping_cost
+    @order.shipping_cost = 800
     @order.save
     current_customer.cart_items.all.each do |cart_item|
       OrderDetail.create!(item_id: cart_item.item_id, amount: cart_item.amount, price: cart_item.subtotal, order_id: @order.id)
     end
     current_customer.cart_items.destroy_all
-    redirect_to thanks_orders_path
+    redirect_to orders_thanks_path
   end
 
   def thanks
@@ -46,9 +44,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order.shipping_cost = 800
-    @order_details = @order.order_details
-    @total = @order.total_payment - @order.shipping_cost
+    
   end
 
   private
