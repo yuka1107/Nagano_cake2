@@ -26,6 +26,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.shipping_cost = 800
+    @order.total_payment = current_customer.cart_total + @order.shipping_cost
     @order.save
     current_customer.cart_items.all.each do |cart_item|
       OrderDetail.create!(item_id: cart_item.item_id, amount: cart_item.amount, price: cart_item.subtotal, order_id: @order.id)
