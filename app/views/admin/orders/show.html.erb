@@ -61,7 +61,7 @@
               <td><%= order_detail.item.name %></td>
               <td><%= order_detail.item.with_tax_price.to_s(:delimited) %></td>
               <td><%= order_detail.amount %></td>
-              <td><%= order_detail.subtotal.to_s(:delimited) %></td>
+              <td><%= order_detail.price.to_s(:delimited) %></td>
               <td>
                 <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch, local:true do |f| %>
                   <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [t("enums.order_detail.making_status.#{k}"), k]} %>
@@ -80,11 +80,7 @@
           <tr>
             <th class="font-weight-bold">商品合計</th>
             <td>
-              <% total = 0 %>
-              <% @order.order_details.each do |detail| %>
-                <% total += detail.subtotal %>
-              <% end %>
-              <%= "#{total}円" %>
+              <%= (@order.total_payment - @order.shipping_cost).to_s(:delimited) %>円
             </td>
           </tr>
           <tr>
